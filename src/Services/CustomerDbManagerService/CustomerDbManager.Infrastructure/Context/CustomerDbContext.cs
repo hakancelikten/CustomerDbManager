@@ -13,11 +13,9 @@ namespace CustomerDbManager.Infrastructure.Context
 {
     public class CustomerDbContext : DbContext, IUnitOfWork
     {
-        private readonly IMediator _mediator;
         public CustomerDbContext() : base() { }
-        public CustomerDbContext(DbContextOptions<CustomerDbContext> options, IMediator mediator) : base(options)
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options)
         {
-            _mediator = mediator;
         }
         public DbSet<Customer> Customers { get; set; }
 

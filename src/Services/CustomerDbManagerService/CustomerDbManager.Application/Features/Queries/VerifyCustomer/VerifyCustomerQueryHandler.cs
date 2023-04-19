@@ -10,8 +10,7 @@ namespace CustomerDbManager.Application.Features.Queries.VerifyCustomer
 {
     public class VerifyCustomerQueryHandler : IRequestHandler<VerifyCustomerQueryRequest, VerifyCustomerQueryResponse>
     {
-        private readonly ICustomerService
-            _customerService;
+        private readonly ICustomerService _customerService;
 
         public VerifyCustomerQueryHandler(ICustomerService customerService)
         {
