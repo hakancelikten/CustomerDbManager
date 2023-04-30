@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace CustomerDbManager.Application.Interfaces.Repositories.Common
 {
-    public interface IGenericRepository<T> : IRepository<T> where T : BaseEntity
+    public interface IGenericRepository<T> : IUnitOfWork where T : BaseEntity
     {
         Task<List<T>> GetAll();
         Task<List<T>> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> order = null, params Expression<Func<T, object>>[] includes);

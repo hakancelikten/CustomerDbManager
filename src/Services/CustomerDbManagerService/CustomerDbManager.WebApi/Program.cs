@@ -1,7 +1,5 @@
 using CustomerDbManager.Application;
 using CustomerDbManager.Infrastructure;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

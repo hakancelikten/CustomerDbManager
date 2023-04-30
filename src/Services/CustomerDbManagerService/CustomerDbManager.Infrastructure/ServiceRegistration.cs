@@ -8,6 +8,7 @@ using CustomerDbManager.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RabbitListener.Application.Interfaces.Repositories.Common;
 
 namespace CustomerDbManager.Infrastructure
 {
@@ -23,25 +24,26 @@ namespace CustomerDbManager.Infrastructure
             var optionsBuilder = new DbContextOptionsBuilder<CustomerDbContext>().UseSqlServer(configuration["CustomerDbConnectionStringOnLocal"]);
 
             using var dbContext = new CustomerDbContext(optionsBuilder.Options);
-            dbContext.Database.EnsureCreated();
-
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash("123", out passwordHash, out passwordSalt);
-            var customer = new Customer
             {
-                Email = "celiktenhakan@hotmail.com",
-                FirstName = "hakan",
-                LastName = "çelikten",
-                TCKN = 32095302790,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                BirthDate = new DateTime(1993, 10, 20),
-                Status = true
-            };
-            var userEntity = dbContext.Entry(customer);
-            userEntity.State = EntityState.Added;
-            dbContext.SaveChanges();
+                dbContext.Database.EnsureCreated();
 
+                //byte[] passwordHash, passwordSalt;
+                //HashingHelper.CreatePasswordHash("123", out passwordHash, out passwordSalt);
+                //var customer = new Customer
+                //{
+                //    Email = "celiktenhakan@hotmail.com",
+                //    FirstName = "hakan",
+                //    LastName = "çelikten",
+                //    TCKN = 32095302790,
+                //    PasswordHash = passwordHash,
+                //    PasswordSalt = passwordSalt,
+                //    BirthDate = new DateTime(1993, 10, 20),
+                //    Status = true
+                //};
+                //var userEntity = dbContext.Entry(customer);
+                //userEntity.State = EntityState.Added;
+                //dbContext.SaveChanges();
+            }
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
 

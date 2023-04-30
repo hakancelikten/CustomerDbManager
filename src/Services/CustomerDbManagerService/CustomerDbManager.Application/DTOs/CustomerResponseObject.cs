@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CustomerDbManager.Application.DTOs
 {
-    public class CreateCustomerObject
+    public class CustomerResponseObject
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long TCKN { get; set; }
+        public string TCKN { get; set; }
         public string BirthDate { get; set; }
     }
 }

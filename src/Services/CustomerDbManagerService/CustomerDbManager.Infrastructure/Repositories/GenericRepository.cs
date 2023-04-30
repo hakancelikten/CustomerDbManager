@@ -1,7 +1,6 @@
 ﻿using CustomerDbManager.Application.Interfaces.Repositories.Common;
 using CustomerDbManager.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
-using RabbitListener.Application.Interfaces.Repositories.Common;
 using System.Linq.Expressions;
 
 namespace CustomerDbManager.Infrastructure.Repositories
@@ -14,8 +13,6 @@ namespace CustomerDbManager.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-
-        public IUnitOfWork UnitOfWork { get; }
 
         public virtual async Task<T> AddAsync(T entity)
         {
@@ -83,6 +80,16 @@ namespace CustomerDbManager.Infrastructure.Repositories
         {
             _dbContext.Set<T>().Update(entity);
             return entity;
+        }
+        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
+        {
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
